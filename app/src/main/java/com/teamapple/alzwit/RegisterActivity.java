@@ -2,6 +2,7 @@ package com.teamapple.alzwit;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -59,9 +60,12 @@ public class RegisterActivity extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
                 if (user != null) {
-                    // User is signed in
+                    Intent loginView = new Intent(RegisterActivity.this, LoginActivity.class);
+                    loginView.putExtra("RegisteredEmail", emEmail);
+                    startActivity(loginView);
                 } else {
-                    // User is signed out
+                    Intent loginView = new Intent(RegisterActivity.this, LoginActivity.class);
+                    startActivity(loginView);
                 }
             }
         };
