@@ -29,6 +29,12 @@ public class FirebaseMethods {
         }
     }
 
+    /**
+     * Register new auth user by email and password
+     * @param email
+     * @param password
+     * @param user
+     */
     public void registerNewEmail(final String email, String password, final User user){
         mAuth.createUserWithEmailAndPassword(email, password);
         userID = mAuth.getCurrentUser().getUid();

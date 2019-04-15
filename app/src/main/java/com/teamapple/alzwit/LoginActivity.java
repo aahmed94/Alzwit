@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -24,7 +25,7 @@ import java.util.ArrayList;
 public class LoginActivity extends AppCompatActivity {
 
     private Context mContext;
-    private String email,password;
+    private String email, password;
     private EditText mEmail, mPassword;
     private Button btnLogin;
     private ProgressBar mProgressBar;
@@ -41,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        mContext=LoginActivity.this;
+        mContext = LoginActivity.this;
 
         getControls();
         hideProgressBar();
@@ -50,27 +51,37 @@ public class LoginActivity extends AppCompatActivity {
         onClickRegisterButton();
     }
 
+    /**
+     * Hides the progress bar.
+     */
     private void hideProgressBar() {
         mProgressBar.setVisibility(View.INVISIBLE);
     }
 
+    /**
+     * Shows the progress bar.
+     */
     private void showProgressBar() {
         mProgressBar.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * Instance the firebase fields
+     */
     private void prepareFirebase() {
         mAuth = FirebaseAuth.getInstance();
         firebaseMethods = new FirebaseMethods(mContext);
         setupFirebaseAuth();
     }
 
+    /**
+     * Checks the state of the user
+     */
     private void setupFirebaseAuth() {
         mAuthListener = new FirebaseAuth.AuthStateListener() {
-
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-
                 if (user != null) {
                     redirectToMainView();
                 }
@@ -78,24 +89,29 @@ public class LoginActivity extends AppCompatActivity {
         };
     }
 
+    /**
+     * Connects the fields to the controls in the view.
+     */
     private void getControls() {
-        mEmail =  (EditText) findViewById(R.id.inputEmail);
+        mEmail = (EditText) findViewById(R.id.inputEmail);
         mPassword = (EditText) findViewById(R.id.inputPassword);
-        btnLogin =  (Button) findViewById(R.id.loginButton);
+        btnLogin = (Button) findViewById(R.id.loginButton);
         mProgressBar = (ProgressBar) findViewById(R.id.loginActivityProgressBar);
         register = (TextView) findViewById(R.id.createNewUserTxt);
     }
 
+    /**
+     * On click on login button => check user input and then register or show errors.
+     */
     private void onClickLoginButton() {
-        btnLogin.setOnClickListener(new View.OnClickListener(){
+        btnLogin.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 getUserInput();
-                if(userInputIsValid()) {
+                if (userInputIsValid()) {
                     logInUser(email, password);
-                }
-                else {
+                } else {
                     String errorsToPrint = prepareErrorsForView();
                     Toast.makeText(LoginActivity.this, errorsToPrint,
                             Toast.LENGTH_LONG).show();
@@ -104,10 +120,15 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Prepare the list of errors to print
+     *
+     * @return The list of errors as single string
+     */
     private String prepareErrorsForView() {
         StringBuilder errors = new StringBuilder();
 
-        for (String error:errorMessages) {
+        for (String error : errorMessages) {
             errors.append(error);
             errors.append("\n\r");
         }
@@ -115,35 +136,55 @@ public class LoginActivity extends AppCompatActivity {
         return errors.toString().trim();
     }
 
+    /**
+     * Redirect to the main screen without option to go back.
+     */
     private void redirectToMainView() {
-        Intent intent = new Intent(mContext,MainActivity.class);
+        Intent intent = new Intent(mContext, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
+    /**
+     * Check if the user input is valid.
+     *
+     * @return if the user input is valid.
+     */
     private boolean userInputIsValid() {
         errorMessages = loginGuard.validateLogin(email, password);
 
-        return errorMessages.size()==0;
+        return errorMessages.size() == 0;
     }
 
+    /**
+     * On click on the register button => load register screen
+     */
     private void onClickRegisterButton() {
-        register.setOnClickListener(new View.OnClickListener(){
+        register.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext,RegisterActivity.class);
+                Intent intent = new Intent(mContext, RegisterActivity.class);
                 startActivity(intent);
             }
         });
     }
 
+    /**
+     * Get the input from the view's controls.
+     */
     private void getUserInput() {
         email = mEmail.getText().toString();
         password = mPassword.getText().toString();
     }
 
+    /**
+     * Log In the user and redirect to main screen or show login errors.
+     *
+     * @param email    The user's email
+     * @param password The user's password
+     */
     private void logInUser(final String email, final String password) {
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {

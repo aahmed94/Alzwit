@@ -27,7 +27,7 @@ import java.util.Date;
 
 public class RegisterActivity extends AppCompatActivity {
     private Context mContext;
-    private String  password, confirmPassword, firstName, middleName, lastName, birthday, address, phoneNumber, emFullName, emEmail, emPhoneNumber;
+    private String password, confirmPassword, firstName, middleName, lastName, birthday, address, phoneNumber, emFullName, emEmail, emPhoneNumber;
     private EditText mPassword, mConfirmPassword, mFirstName, mMiddleName, mLastName, mBirthday, mAddress, mPhoneNumber, mEmFullName, mEmEmail, mEmPhoneNumber;
     private DatePickerDialog mDatePicker;
     private Button btnRegister;
@@ -35,7 +35,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private FirebaseDatabase mFirebaseDatabase;
     private FirebaseMethods firebaseMethods;
 
     private ArrayList<String> errorMessages;
@@ -46,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        mContext=RegisterActivity.this;
+        mContext = RegisterActivity.this;
 
         getControls();
         hideProgressBar();
@@ -55,19 +54,28 @@ public class RegisterActivity extends AppCompatActivity {
         onClickRegisterButton();
     }
 
+    /**
+     * Instanciate the firebase fields.
+     */
     private void prepareFirebase() {
         mAuth = FirebaseAuth.getInstance();
         firebaseMethods = new FirebaseMethods(mContext);
         setupFirebaseAuth();
     }
 
+    /**
+     * Hides the progress bar.
+     */
     private void hideProgressBar() {
         mProgressBar.setVisibility(View.INVISIBLE);
     }
 
+    /**
+     * Checks the user's state
+     */
     private void setupFirebaseAuth() {
         mAuth = FirebaseAuth.getInstance();
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -84,19 +92,19 @@ public class RegisterActivity extends AppCompatActivity {
         };
     }
 
+    /**
+     * On click on register button => check input and redirect to login or show errors.
+     */
     private void onClickRegisterButton() {
-        btnRegister.setOnClickListener(new View.OnClickListener(){
+        btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getUserInput();
 
-                if(userInputIsValid())
-                {
-                    RegisterUser();
-                    RedirectToLogin();
-                }
-                else
-                {
+                if (userInputIsValid()) {
+                    registerUser();
+                    redirectToLogin();
+                } else {
                     String errorsToPrint = prepareErrorsForView();
                     Toast.makeText(RegisterActivity.this, errorsToPrint,
                             Toast.LENGTH_LONG).show();
@@ -105,16 +113,23 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    private void RedirectToLogin() {
+    /**
+     * Redirects to the login screen
+     */
+    private void redirectToLogin() {
         Intent loginView = new Intent(RegisterActivity.this, LoginActivity.class);
         loginView.putExtra("RegisteredEmail", emEmail);
         startActivity(loginView);
     }
 
+    /**
+     * Prepare the list of errors for print => as single string
+      * @return List of errors as single string
+     */
     private String prepareErrorsForView() {
         StringBuilder errors = new StringBuilder();
 
-        for (String error:errorMessages) {
+        for (String error : errorMessages) {
             errors.append(error);
             errors.append("\n\r");
         }
@@ -122,37 +137,55 @@ public class RegisterActivity extends AppCompatActivity {
         return errors.toString().trim();
     }
 
-    private void RegisterUser() {
+    /**
+     * Register user
+     */
+    private void registerUser() {
         showProgressBar();
 
         User user = new User(firstName, middleName, lastName, address, getDate(birthday), phoneNumber, new EmergencyUser(emFullName, emEmail, emPhoneNumber));
         firebaseMethods.registerNewEmail(emEmail, password, user);
     }
 
+    /**
+     * Get Date object from string in format dd/MM/yyyy
+     * @param birthday as stirng
+     * @return Date of string
+     */
     private Date getDate(String birthday) {
-        String[] dateParts= birthday.split("/");
-        if(dateParts.length==3) {
+        String[] dateParts = birthday.split("/");
+        if (dateParts.length == 3) {
             return new Date(Integer.parseInt(dateParts[2]), Integer.parseInt(dateParts[1]), Integer.parseInt(dateParts[0]));
         }
 
         return new Date();
     }
 
+    /**
+     * Show the progress bar.
+     */
     private void showProgressBar() {
         mProgressBar.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * Check if the user's input is valid
+     * @return whether the input is valid
+     */
     private boolean userInputIsValid() {
         errorMessages = registerGuard.validateUser(password, confirmPassword, firstName, lastName, address, getDate(birthday), phoneNumber, new EmergencyUser(emFullName, emEmail, emPhoneNumber));
 
-        return errorMessages.size()==0;
+        return errorMessages.size() == 0;
     }
 
+    /**
+     * We prepare the date picker to be ready to pop up when birtday control is clicked
+     */
     private void prepareDatePicker() {
         mBirthday = (EditText) findViewById(R.id.registerActivityDate);
         mBirthday.setInputType(InputType.TYPE_NULL);
 
-        mBirthday.setOnClickListener(new View.OnClickListener(){
+        mBirthday.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -174,20 +207,26 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Get the user's input
+     */
     private void getUserInput() {
-        password=mPassword.getText().toString();
-        confirmPassword=mConfirmPassword.getText().toString();
-        firstName=mFirstName.getText().toString();
-        middleName=mMiddleName.getText().toString();
-        lastName=mLastName.getText().toString();
-        birthday=mBirthday.getText().toString();
-        address=mAddress.getText().toString();
-        phoneNumber=mPhoneNumber.getText().toString();
-        emFullName=mEmFullName.getText().toString();
-        emEmail=mEmEmail.getText().toString();
-        emPhoneNumber=mEmPhoneNumber.getText().toString();
+        password = mPassword.getText().toString();
+        confirmPassword = mConfirmPassword.getText().toString();
+        firstName = mFirstName.getText().toString();
+        middleName = mMiddleName.getText().toString();
+        lastName = mLastName.getText().toString();
+        birthday = mBirthday.getText().toString();
+        address = mAddress.getText().toString();
+        phoneNumber = mPhoneNumber.getText().toString();
+        emFullName = mEmFullName.getText().toString();
+        emEmail = mEmEmail.getText().toString();
+        emPhoneNumber = mEmPhoneNumber.getText().toString();
     }
 
+    /**
+     * Get the view's controls
+     */
     private void getControls() {
         btnRegister = (Button) findViewById(R.id.registerButton);
         mPassword = (EditText) findViewById(R.id.registerActivityInputPassword);
