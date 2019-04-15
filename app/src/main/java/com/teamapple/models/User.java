@@ -78,7 +78,7 @@ public class User {
     }
 
     public String getFullName(){
-        String middleName = this.middleName.isEmpty()? " " : this.middleName;
+        String middleName = this.middleName.isEmpty()? " " : " "+this.middleName+" ";
         return this.firstName+ middleName +this.lastName;
     }
 }
