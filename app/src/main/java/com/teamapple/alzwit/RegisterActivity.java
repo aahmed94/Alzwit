@@ -149,7 +149,9 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void getUserInput() {
-        username=mUsername.getText().toString();
+        
+        getControls();
+        
         password=mPassword.getText().toString();
         confirmPassword=mConfirmPassword.getText().toString();
         firstName=mFirstName.getText().toString();
@@ -161,5 +163,21 @@ public class RegisterActivity extends AppCompatActivity {
         emFullName=mEmFullName.getText().toString();
         emEmail=mEmEmail.getText().toString();
         emPhoneNumber=mEmPhoneNumber.getText().toString();
+    }
+
+    private void getControls() {
+        mPassword = (EditText) findViewById(R.id.registerActivityInputPassword);
+        mConfirmPassword = (EditText) findViewById(R.id.registerActivityInputPasswordConfirm);
+        mFirstName = (EditText) findViewById(R.id.registerActivityFirstName);
+        mLastName = (EditText) findViewById(R.id.registerActivityMiddleName);
+        mLastName = (EditText) findViewById(R.id.registerActivityLastName);
+        mBirthday = (EditText) findViewById(R.id.registerActivityDate);
+        mAddress = (EditText) findViewById(R.id.registerActivityAddress);
+        mPhoneNumber = (EditText) findViewById(R.id.registerActivityPhoneNumber);
+        mEmFullName = (EditText) findViewById(R.id.registerActivityEmergencyName);
+        mEmEmail = (EditText) findViewById(R.id.inputEmail);
+        mEmPhoneNumber = (EditText) findViewById(R.id.registerActivityEmergencyPhoneNumber);
+
+
     }
 }
