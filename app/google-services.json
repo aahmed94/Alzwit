@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "1059617139317-qc9kcal0ia054l92lv3n4dgq8c24nfl8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.teamapple.alzwit",
+            "certificate_hash": "0028277232bf44239c07bcc1ecb3082ab3f52a9a"
+          }
+        },
+        {
           "client_id": "1059617139317-k5ru3mbb4s66k0vugkfpm15in4l6gf30.apps.googleusercontent.com",
           "client_type": 3
         }
