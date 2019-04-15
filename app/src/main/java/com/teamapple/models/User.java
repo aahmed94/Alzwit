@@ -12,8 +12,7 @@ public class User {
     private String phoneNumber;
     private EmergencyUser emergencyUser;
 
-    public User(String password, String firstName, String middleName, String lastName, String address, Date birtday, String phoneNumber, EmergencyUser emergencyUser) {
-        this.password = password;
+    public User(String firstName, String middleName, String lastName, String address, Date birtday, String phoneNumber, EmergencyUser emergencyUser) {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
@@ -21,14 +20,6 @@ public class User {
         this.birtday = birtday;
         this.phoneNumber = phoneNumber;
         this.emergencyUser = emergencyUser;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getFirstName() {

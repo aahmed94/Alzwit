@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.teamapple.firebase.FirebaseMethods;
 import com.teamapple.models.EmergencyUser;
+import com.teamapple.models.User;
 import com.teamapple.validators.RegisterGuard;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -104,7 +105,12 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void RegisterUser() {
         mProgressBar.setVisibility(View.VISIBLE);
-        firebaseMethods.registerNewEmail(emEmail, password);
+
+        String[] dateParts= birthday.split("/");
+        Date birthDate = new Date(Integer.parseInt(dateParts[2]), Integer.parseInt(dateParts[1]), Integer.parseInt(dateParts[0]));
+        User user = new User(firstName, middleName, lastName, address, birthDate, phoneNumber, new EmergencyUser(emFullName, emEmail, emPhoneNumber));
+
+        firebaseMethods.registerNewEmail(emEmail, password, user);
     }
 
     private boolean userInputIsValid() {
