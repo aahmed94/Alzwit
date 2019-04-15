@@ -152,7 +152,7 @@ public class RegisterActivity extends AppCompatActivity {
         
         getControls();
         
-        password=mPassword.getText().toString();
+        password = mPassword.getText().toString();
         confirmPassword=mConfirmPassword.getText().toString();
         firstName=mFirstName.getText().toString();
         middleName=mMiddleName.getText().toString();
