@@ -122,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
     }
     private void LogInUser(final String email, final String password) {
         mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener((Executor) this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
 
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -130,6 +130,8 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
 
                             mProgressBar.setVisibility(View.INVISIBLE);
+                            Intent intent = new Intent(mContext,MainActivity.class);
+                            startActivity(intent);
 
                         } else {
                             mProgressBar.setVisibility(View.VISIBLE);
