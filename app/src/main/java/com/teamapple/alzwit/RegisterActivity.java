@@ -13,6 +13,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.teamapple.firebase.FirebaseMethods;
@@ -43,8 +45,11 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        getControls();
 
-        mContext=RegisterActivity.this;
+        mProgressBar.setVisibility(View.INVISIBLE);
+
+        mAuth = FirebaseAuth.getInstance();
         firebaseMethods=new FirebaseMethods(mContext);
         setupFirebaseAuth();
 
@@ -53,20 +58,15 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void setupFirebaseAuth() {
-        mAuth = FirebaseAuth.getInstance();
-
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
                 if (user != null) {
-                    Intent loginView = new Intent(RegisterActivity.this, LoginActivity.class);
-                    loginView.putExtra("RegisteredEmail", emEmail);
-                    startActivity(loginView);
+                    //
                 } else {
-                    Intent loginView = new Intent(RegisterActivity.this, LoginActivity.class);
-                    startActivity(loginView);
+                    //
                 }
             }
         };
@@ -81,15 +81,22 @@ public class RegisterActivity extends AppCompatActivity {
                 if(userInputIsValid())
                 {
                     RegisterUser();
+                    RedirectToLogin();
                 }
                 else
                 {
                     String errorsToPrint = prepareErrorsForView();
-                    Toast.makeText(mContext, errorsToPrint,
+                    Toast.makeText(RegisterActivity.this, errorsToPrint,
                             Toast.LENGTH_LONG).show();
                 }
             }
         });
+    }
+
+    private void RedirectToLogin() {
+        Intent loginView = new Intent(RegisterActivity.this, LoginActivity.class);
+        loginView.putExtra("RegisteredEmail", emEmail);
+        startActivity(loginView);
     }
 
     private String prepareErrorsForView() {
@@ -140,7 +147,7 @@ public class RegisterActivity extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                mBirthday.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                mBirthday.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + (year));
                             }
                         }, year, month, day);
                 mDatePicker.show();
@@ -149,10 +156,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void getUserInput() {
-        
-        getControls();
-        
-        password = mPassword.getText().toString();
+        password=mPassword.getText().toString();
         confirmPassword=mConfirmPassword.getText().toString();
         firstName=mFirstName.getText().toString();
         middleName=mMiddleName.getText().toString();
@@ -166,18 +170,18 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void getControls() {
+        btnRegister = (Button) findViewById(R.id.registerButton);
         mPassword = (EditText) findViewById(R.id.registerActivityInputPassword);
         mConfirmPassword = (EditText) findViewById(R.id.registerActivityInputPasswordConfirm);
         mFirstName = (EditText) findViewById(R.id.registerActivityFirstName);
-        mLastName = (EditText) findViewById(R.id.registerActivityMiddleName);
+        mMiddleName = (EditText) findViewById(R.id.registerActivityMiddleName);
         mLastName = (EditText) findViewById(R.id.registerActivityLastName);
         mBirthday = (EditText) findViewById(R.id.registerActivityDate);
         mAddress = (EditText) findViewById(R.id.registerActivityAddress);
         mPhoneNumber = (EditText) findViewById(R.id.registerActivityPhoneNumber);
         mEmFullName = (EditText) findViewById(R.id.registerActivityEmergencyName);
-        mEmEmail = (EditText) findViewById(R.id.inputEmail);
+        mEmEmail = (EditText) findViewById(R.id.registerActivityEmail);
         mEmPhoneNumber = (EditText) findViewById(R.id.registerActivityEmergencyPhoneNumber);
-
-
+        mProgressBar = (ProgressBar) findViewById(R.id.registerActivityProgressBar);
     }
 }
