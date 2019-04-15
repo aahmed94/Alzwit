@@ -13,10 +13,10 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.teamapple.firebase.FirebaseMethods;
 import com.teamapple.models.EmergencyUser;
 import com.teamapple.models.User;
@@ -27,46 +27,58 @@ import java.util.Date;
 
 public class RegisterActivity extends AppCompatActivity {
     private Context mContext;
-    private String username, password, confirmPassword, firstName, middleName, lastName, birthday, address, phoneNumber, emFullName, emEmail, emPhoneNumber;
-    private EditText mUsername, mPassword, mConfirmPassword, mFirstName, mMiddleName, mLastName, mBirthday, mAddress, mPhoneNumber, mEmFullName, mEmEmail, mEmPhoneNumber;
+    private String  password, confirmPassword, firstName, middleName, lastName, birthday, address, phoneNumber, emFullName, emEmail, emPhoneNumber;
+    private EditText mPassword, mConfirmPassword, mFirstName, mMiddleName, mLastName, mBirthday, mAddress, mPhoneNumber, mEmFullName, mEmEmail, mEmPhoneNumber;
     private DatePickerDialog mDatePicker;
     private Button btnRegister;
     private ProgressBar mProgressBar;
 
-    //firebase
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseDatabase mFirebaseDatabase;
     private FirebaseMethods firebaseMethods;
 
     private ArrayList<String> errorMessages;
     private RegisterGuard registerGuard = new RegisterGuard();
+    private DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        mContext=RegisterActivity.this;
+
         getControls();
-
-        mProgressBar.setVisibility(View.INVISIBLE);
-
-        mAuth = FirebaseAuth.getInstance();
-        firebaseMethods=new FirebaseMethods(mContext);
-        setupFirebaseAuth();
-
+        hideProgressBar();
+        prepareFirebase();
         prepareDatePicker();
         onClickRegisterButton();
     }
 
+    private void prepareFirebase() {
+        mAuth = FirebaseAuth.getInstance();
+        firebaseMethods = new FirebaseMethods(mContext);
+        setupFirebaseAuth();
+    }
+
+    private void hideProgressBar() {
+        mProgressBar.setVisibility(View.INVISIBLE);
+    }
+
     private void setupFirebaseAuth() {
+        mAuth = FirebaseAuth.getInstance();
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        myRef = mFirebaseDatabase.getReference();
+
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
                 if (user != null) {
-                    //
+                    // User is signed in
                 } else {
-                    //
+                    // User is signed out
                 }
             }
         };
@@ -111,22 +123,27 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void RegisterUser() {
-        mProgressBar.setVisibility(View.VISIBLE);
+        showProgressBar();
 
-        String[] dateParts= birthday.split("/");
-        Date birthDate = new Date(Integer.parseInt(dateParts[2]), Integer.parseInt(dateParts[1]), Integer.parseInt(dateParts[0]));
-        User user = new User(firstName, middleName, lastName, address, birthDate, phoneNumber, new EmergencyUser(emFullName, emEmail, emPhoneNumber));
-
+        User user = new User(firstName, middleName, lastName, address, getDate(birthday), phoneNumber, new EmergencyUser(emFullName, emEmail, emPhoneNumber));
         firebaseMethods.registerNewEmail(emEmail, password, user);
     }
 
-    private boolean userInputIsValid() {
+    private Date getDate(String birthday) {
         String[] dateParts= birthday.split("/");
-        Date birthDate = new Date();
         if(dateParts.length==3) {
-            birthDate = new Date(Integer.parseInt(dateParts[2]), Integer.parseInt(dateParts[1]), Integer.parseInt(dateParts[0]));
+            return new Date(Integer.parseInt(dateParts[2]), Integer.parseInt(dateParts[1]), Integer.parseInt(dateParts[0]));
         }
-        errorMessages = registerGuard.validateUser(password, firstName, lastName, address, birthDate, phoneNumber, new EmergencyUser(emFullName, emEmail, emPhoneNumber));
+
+        return new Date();
+    }
+
+    private void showProgressBar() {
+        mProgressBar.setVisibility(View.VISIBLE);
+    }
+
+    private boolean userInputIsValid() {
+        errorMessages = registerGuard.validateUser(password, confirmPassword, firstName, lastName, address, getDate(birthday), phoneNumber, new EmergencyUser(emFullName, emEmail, emPhoneNumber));
 
         return errorMessages.size()==0;
     }

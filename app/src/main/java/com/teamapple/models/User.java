@@ -21,19 +21,6 @@ public class User {
         this.emergencyUser = emergencyUser;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "firstName='" + firstName + '\'' +
-                ", middleName='" + middleName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", address='" + address + '\'' +
-                ", birthday=" + birthday +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", emergencyUser=" + emergencyUser +
-                '}';
-    }
-
     public String getFirstName() {
         return firstName;
     }

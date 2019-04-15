@@ -1,23 +1,22 @@
 package com.teamapple.validators;
 
 import android.util.Log;
-
 import com.teamapple.models.EmergencyUser;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 public class RegisterGuard {
 
     public RegisterGuard() {
     }
 
-    public ArrayList<String> validateUser(String password, String firstName, String lastName, String address, Date birtday, String phoneNumber, EmergencyUser emergencyUser){
+    public ArrayList<String> validateUser(String password, String confirmPassword, String firstName, String lastName, String address, Date birtday, String phoneNumber, EmergencyUser emergencyUser){
         ArrayList<String> errorMessages = new ArrayList<>();
 
         if(password.isEmpty())
             errorMessages.add("Please enter password.");
+        if(password.compareTo(confirmPassword) != 0)
+            errorMessages.add("Passwords do not match.");
         if(password.length()<6)
             errorMessages.add("Password must be at least 6 characters long.");
         if(firstName.isEmpty())
