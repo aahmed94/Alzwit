@@ -1,76 +1,207 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/alzwit_background">
 
-        <TextView
-            android:id="@+id/textViewLayout"
-            android:text="Register A New Account"
-            android:layout_width="match_parent"
-            android:textSize="30dp"
-            android:textColor="#fff"
-            android:gravity="center"
-            android:layout_marginTop="15dp"
-            android:layout_height="100dp"
-            android:layout_alignParentTop="true"
-             />
-    <RelativeLayout
-        android:layout_margin="15dp"
-        android:id="@+id/registerActivityUsernameLayout"
+    <TextView
+        android:id="@+id/textViewLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textViewLayout">
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="Register A New Account"
+        android:textColor="#fff"
+        android:textSize="30dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/registerActivityUsernameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewLayout"
+            android:layout_margin="15dp">
 
             <EditText
-                android:id="@+id/registerActivityUsername"
-                android:textColor="#fff"
+                android:id="@+id/registerActivityEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Emergency Contact E-mail"
                 android:inputType="text"
-                android:hint="Username"/>
+                android:textColor="#fff" />
 
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_margin="15dp"
-        android:id="@+id/registerActivityPasswordInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/registerActivityUsernameLayout">
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/registerActivityPasswordInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/registerActivityUsernameLayout"
+            android:layout_margin="15dp">
 
             <EditText
                 android:id="@+id/registerActivityInputPassword"
-                android:textColor="#fff"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Password"
                 android:inputType="textPassword"
-                android:hint="Password"/>
+                android:textColor="#fff" />
 
-    </RelativeLayout>
+        </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_margin="15dp"
-        android:id="@+id/registerActivityEmailLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/registerActivityPasswordInputLayout">
+        <RelativeLayout
+            android:id="@+id/registerActivityInputPasswordConfirmLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/registerActivityPasswordInputLayout"
+            android:layout_margin="15dp">
 
             <EditText
-                android:id="@+id/registerActivityInputEmail"
-                android:textColor="#fff"
+                android:id="@+id/registerActivityInputPasswordConfirm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Confirm Password"
                 android:inputType="textEmailAddress"
-                android:hint="Email"/>
+                android:textColor="#fff" />
 
-    </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/registerActivityFirstNameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/registerActivityInputPasswordConfirmLayout"
+            android:layout_margin="15dp">
+
+            <EditText
+                android:id="@+id/registerActivityFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="First name"
+                android:inputType="textEmailAddress"
+                android:textColor="#fff" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/registerActivityMiddleNameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/registerActivityFirstNameLayout"
+            android:layout_margin="15dp">
+
+            <EditText
+                android:id="@+id/registerActivityMiddleName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Middle name (optional)"
+                android:inputType="textEmailAddress"
+                android:textColor="#fff" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/registerActivityLastNameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/registerActivityMiddleNameLayout"
+            android:layout_margin="15dp">
+
+            <EditText
+                android:id="@+id/registerActivityLastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Last name"
+                android:inputType="textEmailAddress"
+                android:textColor="#fff" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/registerActivityAddressLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/registerActivityLastNameLayout"
+            android:layout_margin="15dp">
+
+            <EditText
+                android:id="@+id/registerActivityAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Address"
+                android:inputType="textEmailAddress"
+                android:textColor="#fff" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/registerActivityDateLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/registerActivityAddressLayout"
+            android:layout_margin="15dp">
+
+            <EditText
+                android:id="@+id/registerActivityDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Date (DD-MM-YYYY)"
+                android:inputType="textEmailAddress"
+                android:textColor="#fff" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/registerActivityPhoneNumberLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/registerActivityDateLayout"
+            android:layout_margin="15dp">
+
+            <EditText
+                android:id="@+id/registerActivityPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Telephone number"
+                android:inputType="textEmailAddress"
+                android:textColor="#fff" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/registerActivityEmergencyNameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/registerActivityPhoneNumberLayout"
+            android:layout_margin="15dp">
+
+            <EditText
+                android:id="@+id/registerActivityEmergencyName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Emergency contact name"
+                android:inputType="text"
+                android:textColor="#fff" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/registerActivityEmergencyPhoneNumberLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/registerActivityEmergencyNameLayout"
+            android:layout_margin="15dp">
+
+            <EditText
+                android:id="@+id/registerActivityEmergencyPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Emergency contact phone number"
+                android:inputType="text"
+                android:textColor="#fff" />
+        </RelativeLayout>
+
+    </ScrollView>
 
     <ProgressBar
         android:id="@+id/registerActivityProgressBar"
         android:layout_width="200dp"
-        android:layout_centerInParent="true"
-        android:layout_height="200dp" />
+        android:layout_height="200dp"
+        android:layout_centerInParent="true" />
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/registerButton"

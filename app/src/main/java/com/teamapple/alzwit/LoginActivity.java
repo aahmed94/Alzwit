@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.teamapple.firebase.FirebaseMethods;
 
@@ -22,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mContext=LoginActivity.this;
         //firebaseMethods=new FirebaseMethods(mContext);
-        setupFirebaseAuth();
+       // setupFirebaseAuth();
 
         onClickLoginButton();
     }
@@ -83,6 +84,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private boolean userInputIsCorrect() {
     ///to do
+        return true;
     }
 
     private void getUserInput() {

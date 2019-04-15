@@ -123,7 +123,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void prepareDatePicker() {
-        mBirthday = (EditText) findViewById(R.id.RegisterActivityBirthday);
+        mBirthday = (EditText) findViewById(R.id.registerActivityDate);
         mBirthday.setInputType(InputType.TYPE_NULL);
 
         mBirthday.setOnClickListener(new View.OnClickListener(){
