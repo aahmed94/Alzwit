@@ -3,7 +3,6 @@ package com.teamapple.models;
 import java.util.Date;
 
 public class User {
-    private String username;
     private String password;
     private String firstName;
     private String middleName;
@@ -13,8 +12,7 @@ public class User {
     private String phoneNumber;
     private EmergencyUser emergencyUser;
 
-    public User(String username, String password, String firstName, String middleName, String lastName, String address, Date birtday, String phoneNumber, EmergencyUser emergencyUser) {
-        this.username = username;
+    public User(String password, String firstName, String middleName, String lastName, String address, Date birtday, String phoneNumber, EmergencyUser emergencyUser) {
         this.password = password;
         this.firstName = firstName;
         this.middleName = middleName;
@@ -23,14 +21,6 @@ public class User {
         this.birtday = birtday;
         this.phoneNumber = phoneNumber;
         this.emergencyUser = emergencyUser;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getPassword() {

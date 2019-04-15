@@ -11,11 +11,9 @@ public class RegisterGuard {
     public RegisterGuard() {
     }
 
-    public ArrayList<String> validateUser(String username, String password, String firstName, String lastName, String address, Date birtday, String phoneNumber, EmergencyUser emergencyUser){
+    public ArrayList<String> validateUser(String password, String firstName, String lastName, String address, Date birtday, String phoneNumber, EmergencyUser emergencyUser){
         ArrayList<String> errorMessages = new ArrayList<>();
 
-        if(username.isEmpty())
-            errorMessages.add("Please enter username.");
         if(password.isEmpty())
             errorMessages.add("Please enter password.");
         if(password.length()<6)
