@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1059617139317",
+    "firebase_url": "https://alzwit.firebaseio.com",
+    "project_id": "alzwit",
+    "storage_bucket": "alzwit.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1059617139317:android:7dd4784c4434a5b8",
+        "android_client_info": {
+          "package_name": "com.teamapple.alzwit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1059617139317-l5fhug9uujdr901bpgs0bc661hkk9pio.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.teamapple.alzwit",
+            "certificate_hash": "61262d58592ac8754eee51432ae699dd9e90ab38"
+          }
+        },
+        {
+          "client_id": "1059617139317-k5ru3mbb4s66k0vugkfpm15in4l6gf30.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXZ4Selnjb6ay6cOP32ZWVpEKAiUDCZi0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1059617139317-k5ru3mbb4s66k0vugkfpm15in4l6gf30.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
