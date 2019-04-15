@@ -1,5 +1,7 @@
 package com.teamapple.validators;
 
+import android.util.Log;
+
 import com.teamapple.models.EmergencyUser;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -24,7 +26,8 @@ public class RegisterGuard {
             errorMessages.add("Please enter last name.");
         if(address.isEmpty())
             errorMessages.add("Please enter address.");
-        if(!birtday.before(new Date()))
+        Log.d("Birthday", birtday.toString());
+        if(birtday.before(new Date()))
             errorMessages.add("Please enter valid birtday.");
         if(phoneNumber.isEmpty())
             errorMessages.add("Please enter phone number.");

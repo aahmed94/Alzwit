@@ -7,18 +7,31 @@ public class User {
     private String middleName;
     private String lastName;
     private String address;
-    private Date birtday;
+    private Date birthday;
     private String phoneNumber;
     private EmergencyUser emergencyUser;
 
-    public User(String firstName, String middleName, String lastName, String address, Date birtday, String phoneNumber, EmergencyUser emergencyUser) {
+    public User(String firstName, String middleName, String lastName, String address, Date birthday, String phoneNumber, EmergencyUser emergencyUser) {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
         this.address = address;
-        this.birtday = birtday;
+        this.birthday = birthday;
         this.phoneNumber = phoneNumber;
         this.emergencyUser = emergencyUser;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "firstName='" + firstName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address='" + address + '\'' +
+                ", birthday=" + birthday +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", emergencyUser=" + emergencyUser +
+                '}';
     }
 
     public String getFirstName() {
@@ -54,11 +67,11 @@ public class User {
     }
 
     public Date getBirtday() {
-        return birtday;
+        return birthday;
     }
 
     public void setBirtday(Date birtday) {
-        this.birtday = birtday;
+        this.birthday = birtday;
     }
 
     public String getPhoneNumber() {
