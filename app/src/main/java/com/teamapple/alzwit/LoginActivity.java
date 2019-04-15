@@ -49,6 +49,14 @@ public class LoginActivity extends AppCompatActivity {
         prepareFirebase();
         onClickLoginButton();
         onClickRegisterButton();
+        loadRecentRegisterData();
+    }
+
+    private void loadRecentRegisterData() {
+        Intent intent = getIntent();
+        String email = intent.getStringExtra("RegisteredEmail");
+
+        mEmail.setText(email);
     }
 
     /**
@@ -141,9 +149,8 @@ public class LoginActivity extends AppCompatActivity {
      */
     private void redirectToMainView() {
         Intent intent = new Intent(mContext, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+        finish();
     }
 
     /**
@@ -194,6 +201,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             hideProgressBar();
                             redirectToMainView();
+                            finish();
                         } else {
                             Toast.makeText(LoginActivity.this, "Wrong credentials.",
                                     Toast.LENGTH_SHORT).show();
