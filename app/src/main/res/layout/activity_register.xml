@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/alzwit_background">
+
+        <TextView
+            android:id="@+id/textViewLayout"
+            android:text="Register A New Account"
+            android:layout_width="match_parent"
+            android:textSize="30dp"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:layout_marginTop="15dp"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+             />
+    <RelativeLayout
+        android:layout_margin="15dp"
+        android:id="@+id/registerActivityUsernameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewLayout">
+
+            <EditText
+                android:id="@+id/registerActivityUsername"
+                android:textColor="#fff"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="Username"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_margin="15dp"
+        android:id="@+id/registerActivityPasswordInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/registerActivityUsernameLayout">
+
+            <EditText
+                android:id="@+id/registerActivityInputPassword"
+                android:textColor="#fff"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:hint="Password"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_margin="15dp"
+        android:id="@+id/registerActivityEmailLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/registerActivityPasswordInputLayout">
+
+            <EditText
+                android:id="@+id/registerActivityInputEmail"
+                android:textColor="#fff"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:hint="Email"/>
+
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/registerActivityProgressBar"
+        android:layout_width="200dp"
+        android:layout_centerInParent="true"
+        android:layout_height="200dp" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/registerButton"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="61dp"
+        android:background="@layout/login_button_layout"
+        android:text="Register"
+        android:textColor="#fff" />
+
+</RelativeLayout>
