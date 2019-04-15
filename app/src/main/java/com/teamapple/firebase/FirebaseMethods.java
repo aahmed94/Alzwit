@@ -25,7 +25,7 @@ public class FirebaseMethods {
         }
     }
 
-    public void registerNewEmail(final String email, String password, final String username){
+    public void registerNewEmail(final String email, String password){
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override

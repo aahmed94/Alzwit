@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.teamapple.firebase.FirebaseMethods;
@@ -78,14 +79,28 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    //Wrong user input logic
+                    String errorsToPrint = prepareErrorsForView();
+                    Toast.makeText(mContext, errorsToPrint,
+                            Toast.LENGTH_LONG).show();
                 }
             }
         });
     }
 
-    private void RegisterUser() {
+    private String prepareErrorsForView() {
+        StringBuilder errors = new StringBuilder();
 
+        for (String error:errorMessages) {
+            errors.append(error);
+            errors.append("\n\r");
+        }
+
+        return errors.toString().trim();
+    }
+
+    private void RegisterUser() {
+        mProgressBar.setVisibility(View.VISIBLE);
+        firebaseMethods.registerNewEmail(emEmail, password);
     }
 
     private boolean userInputIsValid() {
