@@ -28,7 +28,7 @@ public class RegisterGuard {
             errorMessages.add("Please enter address.");
         Log.d("Birthday", birtday.toString());
         if(birtday.before(new Date()))
-            errorMessages.add("Please enter valid birtday.");
+            errorMessages.add("Please enter valid birthday.");
         if(phoneNumber.isEmpty())
             errorMessages.add("Please enter phone number.");
 

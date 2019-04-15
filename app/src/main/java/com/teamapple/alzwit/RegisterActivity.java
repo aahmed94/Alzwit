@@ -122,8 +122,10 @@ public class RegisterActivity extends AppCompatActivity {
 
     private boolean userInputIsValid() {
         String[] dateParts= birthday.split("/");
-        Date birthDate = new Date(Integer.parseInt(dateParts[2]), Integer.parseInt(dateParts[1]), Integer.parseInt(dateParts[0]));
-
+        Date birthDate = new Date();
+        if(dateParts.length==3) {
+            birthDate = new Date(Integer.parseInt(dateParts[2]), Integer.parseInt(dateParts[1]), Integer.parseInt(dateParts[0]));
+        }
         errorMessages = registerGuard.validateUser(password, firstName, lastName, address, birthDate, phoneNumber, new EmergencyUser(emFullName, emEmail, emPhoneNumber));
 
         return errorMessages.size()==0;
