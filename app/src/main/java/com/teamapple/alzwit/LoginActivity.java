@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -28,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mEmail, mPassword;
     private Button btnLogin;
     private ProgressBar mProgressBar;
+    private TextView Register;
 
 
 
@@ -71,6 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
 
                     onClickLoginButton();
+                    onClickRegisterButton();
                 }
             }
         };
@@ -82,6 +85,7 @@ public class LoginActivity extends AppCompatActivity {
         mPassword =findViewById(R.id.inputPassword);
         btnLogin =  findViewById(R.id.loginButton);
         mProgressBar =findViewById(R.id.loginActivityProgressBar);
+        Register =  findViewById(R.id.createNewUserTxt);
 
     }
     private void onClickLoginButton() {
@@ -98,7 +102,19 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+    private void onClickRegisterButton() {
+        Register.setOnClickListener(new View.OnClickListener(){
 
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(mContext,RegisterActivity.class);
+
+                startActivity(intent);
+
+            }
+        });
+    }
 
     private void getUserInput() {
         email=mEmail.getText().toString();
