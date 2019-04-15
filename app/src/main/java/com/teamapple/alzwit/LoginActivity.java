@@ -94,9 +94,16 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 getUserInput();
+                if((email!=null || email.isEmpty()) && (password!=null || password.isEmpty())){
+                    LogInUser(email ,password);
+                }
+                else{
+                    String errorsToPrint = "Username/Password is empty";
+                    Toast.makeText(LoginActivity.this, errorsToPrint,
+                            Toast.LENGTH_LONG).show();
 
+                }
 
-                LogInUser(email ,password);
 
 
             }
@@ -135,8 +142,13 @@ public class LoginActivity extends AppCompatActivity {
 
                         } else {
                             mProgressBar.setVisibility(View.VISIBLE);
+                            String errorsToPrint = "Username/Password is wrong";
+                            Toast.makeText(LoginActivity.this, errorsToPrint,
+                                    Toast.LENGTH_LONG).show();
+                            mEmail.getText().clear();
+                            mPassword.getText().clear();
                         }
-                        setupFirebaseAuth();
+
                     }
                 });
 
