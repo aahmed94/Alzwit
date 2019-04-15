@@ -201,7 +201,6 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             hideProgressBar();
                             redirectToMainView();
-                            finish();
                         } else {
                             Toast.makeText(LoginActivity.this, "Wrong credentials.",
                                     Toast.LENGTH_SHORT).show();
