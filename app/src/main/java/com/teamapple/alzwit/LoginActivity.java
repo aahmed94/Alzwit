@@ -48,7 +48,8 @@ public class LoginActivity extends AppCompatActivity {
         firebaseMethods=new FirebaseMethods(mContext);
         mProgressBar.setVisibility(View.INVISIBLE);
         setupFirebaseAuth();
-
+        onClickLoginButton();
+        onClickRegisterButton();
 
     }
 
@@ -72,8 +73,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 } else {
 
-                    onClickLoginButton();
-                    onClickRegisterButton();
+
                 }
             }
         };
