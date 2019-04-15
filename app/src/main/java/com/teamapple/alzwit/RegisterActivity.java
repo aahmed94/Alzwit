@@ -55,7 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     /**
-     * Instanciate the firebase fields.
+     * Instantiate the Firebase fields.
      */
     private void prepareFirebase() {
         mAuth = FirebaseAuth.getInstance();
@@ -228,18 +228,18 @@ public class RegisterActivity extends AppCompatActivity {
      * Get the view's controls
      */
     private void getControls() {
-        btnRegister = (Button) findViewById(R.id.registerButton);
-        mPassword = (EditText) findViewById(R.id.registerActivityInputPassword);
-        mConfirmPassword = (EditText) findViewById(R.id.registerActivityInputPasswordConfirm);
-        mFirstName = (EditText) findViewById(R.id.registerActivityFirstName);
-        mMiddleName = (EditText) findViewById(R.id.registerActivityMiddleName);
-        mLastName = (EditText) findViewById(R.id.registerActivityLastName);
-        mBirthday = (EditText) findViewById(R.id.registerActivityDate);
-        mAddress = (EditText) findViewById(R.id.registerActivityAddress);
-        mPhoneNumber = (EditText) findViewById(R.id.registerActivityPhoneNumber);
-        mEmFullName = (EditText) findViewById(R.id.registerActivityEmergencyName);
-        mEmEmail = (EditText) findViewById(R.id.registerActivityEmail);
-        mEmPhoneNumber = (EditText) findViewById(R.id.registerActivityEmergencyPhoneNumber);
-        mProgressBar = (ProgressBar) findViewById(R.id.registerActivityProgressBar);
+        btnRegister = findViewById(R.id.registerButton);
+        mPassword = findViewById(R.id.registerActivityInputPassword);
+        mConfirmPassword = findViewById(R.id.registerActivityInputPasswordConfirm);
+        mFirstName = findViewById(R.id.registerActivityFirstName);
+        mMiddleName = findViewById(R.id.registerActivityMiddleName);
+        mLastName = findViewById(R.id.registerActivityLastName);
+        mBirthday = findViewById(R.id.registerActivityDate);
+        mAddress = findViewById(R.id.registerActivityAddress);
+        mPhoneNumber = findViewById(R.id.registerActivityPhoneNumber);
+        mEmFullName = findViewById(R.id.registerActivityEmergencyName);
+        mEmEmail = findViewById(R.id.registerActivityEmail);
+        mEmPhoneNumber = findViewById(R.id.registerActivityEmergencyPhoneNumber);
+        mProgressBar = findViewById(R.id.registerActivityProgressBar);
     }
 }
