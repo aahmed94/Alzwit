@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.text.format.DateFormat;
+
+import com.google.firebase.auth.FirebaseUser;
 import com.teamapple.firebase.FirebaseMethods;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -41,10 +43,10 @@ public class PasportActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewpassport);
         mContext = PasportActivity.this;
+
         getControls();
         prepareFirebase();
 
-       user = firebaseMethods.getCurrentUserData();
 
         onClickRegisterButton();
         setCurrentUserData();
@@ -68,7 +70,6 @@ public class PasportActivity extends AppCompatActivity {
     private void onClickRegisterButton() {
         btnEmContact.setOnClickListener(new View.OnClickListener() {
             Uri number = Uri.parse( "tel:" + user.getEmergencyUser().getPhoneNumber());
-
 
             @Override
             public void onClick(View v) {
