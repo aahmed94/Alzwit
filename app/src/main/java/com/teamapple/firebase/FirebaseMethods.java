@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 import android.support.annotation.NonNull;
 
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,7 +22,6 @@ import java.util.Map;
 public class FirebaseMethods {
 
     private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
     private String userID;
@@ -32,7 +32,7 @@ public class FirebaseMethods {
         mAuth = FirebaseAuth.getInstance();
         mContext = context;
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        myRef = mFirebaseDatabase.getReference();
+       myRef = mFirebaseDatabase.getReference();
 
         if (mAuth.getCurrentUser() != null) {
             userID = mAuth.getCurrentUser().getUid();
@@ -66,19 +66,19 @@ public class FirebaseMethods {
     }
 
     public User getCurrentUserData() {
-        userID = mAuth.getCurrentUser().getUid();
-
-
-        myRef.child("users").equalTo(userID).addValueEventListener(new ValueEventListener() {
+        userID = FirebaseAuth.getInstance().getUid();
+        Log.d("USER ID IS", userID);
+        myRef.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d("DataSnapshot1 is: ", dataSnapshot.toString());
                 for (DataSnapshot data : dataSnapshot.getChildren()) {
+                    Log.d("DataSnapshot is: ", dataSnapshot.toString());
                     String key = dataSnapshot.getKey();
-                   // if(userID.equals(key)){
+                    if(userID.equals(key)){
                         userData = data.getValue(User.class);
-
-
-                    //}
+                       // Log.d("User1 is: ", userData.toString());
+                    }
                 }
             }
 
@@ -87,6 +87,7 @@ public class FirebaseMethods {
 
             }
         });
+        Log.d("User is: ", userData.toString());
         return userData;
     }
 }

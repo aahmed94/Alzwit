@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -22,32 +23,33 @@ import com.teamapple.models.User;
 
 import java.util.Date;
 
-public class PasportActivity extends AppCompatActivity {
+public class PassportActivity extends AppCompatActivity {
 
     //private User user = new User();
     private Context mContext;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private FirebaseDatabase mFirebaseDatabase;
-    private DatabaseReference myRef;
+    private DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("users");
     private String userID;
     private FirebaseMethods firebaseMethods ;
     private TextView mFullName,mPhone,mBirtday,mAddress;
     private Button btnEmContact;
-    private User user ;
+    private User user;
+    private User userData;
+   String hi = "false";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewpassport);
-        mContext = PasportActivity.this;
+        mContext = PassportActivity.this;
         getControls();
-        prepareFirebase();
+       // prepareFirebase();
 
-       user = firebaseMethods.getCurrentUserData();
+       user = getCurrentUserData();
 
-        onClickRegisterButton();
-        setCurrentUserData();
+       // onClickRegisterButton();
+       // setCurrentUserData();
     }
 
     private void getControls() {
@@ -62,13 +64,12 @@ public class PasportActivity extends AppCompatActivity {
     private void prepareFirebase() {
         mAuth = FirebaseAuth.getInstance();
         firebaseMethods = new FirebaseMethods(mContext);
-
     }
 
     private void onClickRegisterButton() {
         btnEmContact.setOnClickListener(new View.OnClickListener() {
             Uri number = Uri.parse( "tel:" + user.getEmergencyUser().getPhoneNumber());
-            //int numberEm = Integer.parseInt(user.getEmergencyUser().getPhoneNumber())
+
 
             @Override
             public void onClick(View v) {
@@ -84,14 +85,14 @@ public class PasportActivity extends AppCompatActivity {
         labelPhone= "My phone number is: ",
         labelBirtday = "My birtday is: ",
         labelButton = "Call ",
-        age = getAge(user.getBirtday()),
+       age = getAge(user.getBirtday()),
         emContactName = user.getEmergencyUser().getFullName();
 
 
             mFullName.setText(labelFullName + user.getFullName());
             mPhone.setText(labelPhone + user.getPhoneNumber());
             mAddress.setText(labelAdress + user.getAddress());
-            mBirtday.setText(labelBirtday + user.getBirtday() + "("+age+")" );
+           mBirtday.setText(labelBirtday + user.getBirtday() + "("+age+")" );
             btnEmContact.setText(labelButton + emContactName);
 
     }
@@ -117,6 +118,29 @@ public class PasportActivity extends AppCompatActivity {
         String ageS = ageInt.toString();
 
         return ageS;
+    }
+    public User getCurrentUserData() {
+        userID = FirebaseAuth.getInstance().getUid();
+        Log.d("USER ID IS", userID);
+        myRef.child(userID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                hi = "Something";
+                Log.d("DataSnapshot1 is: ", dataSnapshot.toString());
+                    Log.d("DataSnapshot is: ", dataSnapshot.toString());
+                       userData = dataSnapshot.getValue(User.class);
+                        Log.d("User1 is: ", "We are here");
+                setCurrentUserData();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+      Log.d("User is: ", hi);
+        return userData;
     }
 
 }

@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         passportButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, PasportActivity.class);
+                Intent intent = new Intent(context, PassportActivity.class);
                 startActivity(intent);
             }
         });
