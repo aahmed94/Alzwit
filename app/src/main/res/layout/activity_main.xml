@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/mainActivityDrawer"
     tools:context=".MainActivity">
 
     <!--top-toolbar-layout-->
@@ -18,11 +19,13 @@
 
     </RelativeLayout>
 
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:id="@+id/activityMainListViewLayout"
         android:layout_below="@+id/activityMainToolbarLayout"
         android:layout_height="wrap_content">
+
     <ListView
         android:id="@+id/activityMainListView"
         android:layout_width="match_parent"
@@ -30,9 +33,7 @@
     </ListView>
 
     </RelativeLayout>
-
     </RelativeLayout>
 
     <include layout="@layout/activity_menu"></include>
-
 </android.support.v4.widget.DrawerLayout>

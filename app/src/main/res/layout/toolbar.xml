@@ -14,14 +14,6 @@
         android:background="@layout/toolbar_gradient">
 
         <ImageView
-            android:id="@+id/menuIcon"
-            android:layout_width="30dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="left"
-            android:visibility="visible"
-            android:src="@drawable/ic_menu" />
-
-        <ImageView
             android:id="@+id/logo"
             android:layout_width="200dp"
             android:layout_height="match_parent"

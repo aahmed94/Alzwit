@@ -1,6 +1,7 @@
 package com.teamapple.alzwit;
 
 import android.content.Context;
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,7 +17,7 @@ import com.teamapple.menu.Menu;
 public class MainActivity extends AppCompatActivity {
 
     private final String TAG = this.toString();
-    private DrawerLayout mDrawerLayout;
+    private static DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Context context = this;
 
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private void setUpToolbar() {
             Toolbar toolbar = findViewById(R.id.toolbartop);
             setSupportActionBar(toolbar);
-            mDrawerLayout = findViewById(R.id.nav_view);
+            mDrawerLayout = findViewById(R.id.mainActivityDrawer);
             mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
             mDrawerLayout.addDrawerListener(mToggle);
             mToggle.syncState();
