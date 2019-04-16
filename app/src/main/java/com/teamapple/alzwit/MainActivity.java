@@ -60,6 +60,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        notificationList.clear();
+        populateList();
+    }
+
     private void setUpToolbar() {
             Toolbar toolbar = findViewById(R.id.toolbartop);
             setSupportActionBar(toolbar);

@@ -12,10 +12,12 @@ import android.widget.TextView;
 import com.teamapple.models.Notification;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHolder> {
 
-    private ArrayList<Notification> list = new ArrayList<>();
+    private ArrayList<Notification> list;
     private Context context;
 
     public CardViewAdapter(ArrayList<Notification> list, Context context) {
@@ -35,6 +37,12 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
     public void onBindViewHolder(@NonNull CardViewAdapter.ViewHolder viewHolder, int i) {
         viewHolder.title.setText(list.get(i).getLabel());
         viewHolder.description.setText(list.get(i).getDescription());
+        Date date = list.get(i).getDate();
+        Date start = list.get(i).getStartTime();
+        Date end = list.get(i).getEndTime();
+        viewHolder.date.setText("Date to do: " +date.getDay() + "/" + date.getMonth() + "/" + date.getYear());
+        viewHolder.startTime.setText("Start time: " +start.getHours() + ":" + start.getMinutes());
+        viewHolder.endTime.setText("End time: " +end.getHours() + ":" + end.getMinutes());
     }
 
     @Override
@@ -42,7 +50,7 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
         return this.list.size();
     }
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView title, description;
+        TextView title, description, date, startTime, endTime;
         CardView cardView;
 
 
@@ -50,6 +58,9 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
             super(itemView);
             title = itemView.findViewById(R.id.notificationTitle);
             description = itemView.findViewById(R.id.notificationDescription);
+            date = itemView.findViewById(R.id.notificationDate);
+            startTime = itemView.findViewById(R.id.notificationStart);
+            endTime = itemView.findViewById(R.id.notificationEnd);
             cardView = itemView.findViewById(R.id.card_view);
         }
         @Override

@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:gravity="center"
-            android:textColor="#f0b53e"
+            android:textColor="#DEF03E"
             />
 
         <TextView
@@ -38,6 +38,43 @@
             android:text="Content"
             android:textColor="#f0b53e"
             android:textSize="17sp" />
+        <TextView
+            android:id="@+id/notificationDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/notificationDescription"
+            android:gravity="center_horizontal"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:text="Date"
+            android:textColor="#f0b53e"
+            android:textSize="17sp" />
+        <TextView
+            android:id="@+id/notificationStart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/notificationDate"
+            android:gravity="center_horizontal"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:text="Start"
+            android:textColor="#f0b53e"
+            android:textSize="17sp" />
+        <TextView
+            android:id="@+id/notificationEnd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/notificationStart"
+            android:gravity="center_horizontal"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:text="End"
+            android:textColor="#f0b53e"
+            android:textSize="17sp" />
+
     </LinearLayout>
 
 </android.support.v7.widget.CardView>

@@ -79,20 +79,23 @@ public class PassportActivity extends AppCompatActivity {
         });
     }
 
-    private void setCurrentUserData() {
+    private void setCurrentUserData(User user) {
+        this.user = user;
         String labelFullName = "My name is: ",
         labelAdress = "My adress is: ",
         labelPhone= "My phone number is: ",
         labelBirtday = "My birtday is: ",
         labelButton = "Call ",
-       age = getAge(user.getBirtday()),
+        age = getAge(user.getBirtday()),
         emContactName = user.getEmergencyUser().getFullName();
 
+        Date date = user.getBirtday();
+        String birthday = date.getDay() + "/" + date.getMonth() + "/" + date.getYear();
 
             mFullName.setText(labelFullName + user.getFullName());
             mPhone.setText(labelPhone + user.getPhoneNumber());
             mAddress.setText(labelAdress + user.getAddress());
-           mBirtday.setText(labelBirtday + user.getBirtday() + "("+age+")" );
+           mBirtday.setText(labelBirtday + birthday + "("+age+")" );
             btnEmContact.setText(labelButton + emContactName);
 
     }
@@ -108,6 +111,7 @@ public class PassportActivity extends AppCompatActivity {
 
         userBirtday.set(year, month, day);
 
+        int age = today-userBirtday;
         int age = today.get(Calendar.YEAR) - userBirtday.get(Calendar.YEAR);
 
         if (today.get(Calendar.DAY_OF_YEAR) < userBirtday.get(Calendar.DAY_OF_YEAR)){
@@ -130,7 +134,7 @@ public class PassportActivity extends AppCompatActivity {
                     Log.d("DataSnapshot is: ", dataSnapshot.toString());
                        userData = dataSnapshot.getValue(User.class);
                         Log.d("User1 is: ", "We are here");
-                setCurrentUserData();
+                setCurrentUserData(userData);
             }
 
             @Override
