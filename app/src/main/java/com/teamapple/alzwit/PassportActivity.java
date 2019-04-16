@@ -48,7 +48,7 @@ public class PassportActivity extends AppCompatActivity {
 
        user = getCurrentUserData();
 
-       // onClickRegisterButton();
+        onClickEmContactButton();
        // setCurrentUserData();
     }
 
@@ -66,14 +66,14 @@ public class PassportActivity extends AppCompatActivity {
         firebaseMethods = new FirebaseMethods(mContext);
     }
 
-    private void onClickRegisterButton() {
-        btnEmContact.setOnClickListener(new View.OnClickListener()  {
-            Uri number = Uri.parse( "tel:" + user.getEmergencyUser().getPhoneNumber());
-
-
+    private void onClickEmContactButton() {
+        btnEmContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_DIAL,number);
+                String num = "tel:" + user.getEmergencyUser().getPhoneNumber();
+                Uri number = Uri.parse( num);
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(number);
                 startActivity(intent);
             }
         });
