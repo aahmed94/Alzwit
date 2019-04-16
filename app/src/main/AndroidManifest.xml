@@ -23,6 +23,7 @@
         <activity android:name=".RegisterActivity"
             android:windowSoftInputMode="adjustNothing"></activity>
         <activity android:name=".AdminActivity"></activity>
+        <activity android:name=".PasportActivity"></activity>
     </application>
 
 </manifest>

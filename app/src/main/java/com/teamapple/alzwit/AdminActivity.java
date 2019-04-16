@@ -57,12 +57,22 @@ public class AdminActivity extends AppCompatActivity {
         if(userInputIsValid(newNot)) {
             showProgressBar();
             firebaseMethods.addNotification(newNot);
+            hideProgressBar();
+            clearFields();
         }
         else{
             String errorsToPrint = prepareErrorsForView();
                    Toast.makeText(AdminActivity.this, errorsToPrint,
                         Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void clearFields() {
+        mLabel.setText("");
+        mDescription.setText("");
+        mDate.setText("");
+        mStartTime.setText("");
+        mEndTime.setText("");
     }
 
     /**

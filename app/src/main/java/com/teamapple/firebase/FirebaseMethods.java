@@ -48,13 +48,21 @@ public class FirebaseMethods {
      */
     public void registerNewEmail(final String email, String password, final User user) {
         mAuth.createUserWithEmailAndPassword(email, password);
+        mAuth.signOut();
+        mAuth.signInWithEmailAndPassword(email, password);
         userID = mAuth.getCurrentUser().getUid();
 
-        myRef = myRef.child("users/");
-        Map<String, User> dataToAdd = new HashMap<>();
-        dataToAdd.put(userID, user);
-        myRef.setValue(dataToAdd);
-        dataToAdd.clear();
+        myRef = FirebaseDatabase.getInstance().getReference("users/"+userID);
+        myRef.setValue(user);
+
+        mAuth.signOut();
+    }
+
+    public void addNotification(Notification newNot) {
+        userID = mAuth.getCurrentUser().getUid();
+        myRef = FirebaseDatabase.getInstance().getReference("notifications/"+userID+"/"+new Date().getTime());
+        myRef.setValue(newNot);
+        Log.d("Add not", "works");
     }
 
     public User getCurrentUserData() {
@@ -81,12 +89,5 @@ public class FirebaseMethods {
         });
         Log.d("User is: ", userData.toString());
         return userData;
-    }
-
-    public void addNotification(Notification newNot) {
-        userID = mAuth.getCurrentUser().getUid();
-        myRef = FirebaseDatabase.getInstance().getReference("notifications/"+userID+"/"+new Date().getTime());
-        myRef.setValue(newNot);
-        Log.d("Add not", "works");
     }
 }

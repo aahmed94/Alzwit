@@ -130,6 +130,7 @@ public class LoginActivity extends AppCompatActivity {
                     showProgressBar();
                     logInUser(email, password);
                 } else {
+                    hideProgressBar();
                     String errorsToPrint = prepareErrorsForView();
                     Toast.makeText(LoginActivity.this, errorsToPrint,
                             Toast.LENGTH_LONG).show();
