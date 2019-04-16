@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activityPassportCardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    card_view:cardUseCompatPadding="true"
+    card_view:cardCornerRadius="2dp"
+    card_view:cardBackgroundColor="#919191"
+    android:layout_marginBottom="16dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/activityPassportToolbarLayout"
+        android:layout_above="@+id/passportScrollView">
+        <include layout="@layout/toolbar"></include>
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:id="@+id/passportScrollView"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activityPassportToolbarLayout"
+        >
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <RelativeLayout
+                android:id="@+id/registerActivityUsernameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp">
+
+                <EditText
+                    android:id="@+id/registerActivityEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Emergency Contact E-mail"
+                    android:inputType="textEmailAddress"
+                    android:textColor="#fff" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/registerActivityPasswordInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/registerActivityUsernameLayout"
+                android:layout_margin="15dp">
+
+                <EditText
+                    android:id="@+id/registerActivityInputPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:textColor="#fff" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/registerActivityInputPasswordConfirmLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/registerActivityPasswordInputLayout"
+                android:layout_margin="15dp">
+
+                <EditText
+                    android:id="@+id/registerActivityInputPasswordConfirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Confirm Password"
+                    android:inputType="textPassword"
+                    android:textColor="#fff" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/registerActivityFirstNameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/registerActivityInputPasswordConfirmLayout"
+                android:layout_margin="15dp">
+
+                <EditText
+                    android:id="@+id/registerActivityFirstName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="First name"
+                    android:inputType="text"
+                    android:textColor="#fff" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/registerActivityMiddleNameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/registerActivityFirstNameLayout"
+                android:layout_margin="15dp">
+
+                <EditText
+                    android:id="@+id/registerActivityMiddleName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Middle name (optional)"
+                    android:inputType="text"
+                    android:textColor="#fff" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/registerActivityLastNameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/registerActivityMiddleNameLayout"
+                android:layout_margin="15dp">
+
+                <EditText
+                    android:id="@+id/registerActivityLastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Last name"
+                    android:inputType="text"
+                    android:textColor="#fff" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/registerActivityAddressLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/registerActivityLastNameLayout"
+                android:layout_margin="15dp">
+
+                <EditText
+                    android:id="@+id/registerActivityAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Address"
+                    android:inputType="text"
+                    android:textColor="#fff" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/registerActivityDateLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/registerActivityAddressLayout"
+                android:layout_margin="15dp">
+
+                <EditText
+                    android:id="@+id/registerActivityDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Date (DD-MM-YYYY)"
+                    android:inputType="date"
+                    android:textColor="#fff" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/registerActivityPhoneNumberLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/registerActivityDateLayout"
+                android:layout_margin="15dp">
+
+                <EditText
+                    android:id="@+id/registerActivityPhoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Telephone number"
+                    android:inputType="phone"
+                    android:textColor="#fff" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/registerActivityEmergencyNameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/registerActivityPhoneNumberLayout"
+                android:layout_margin="15dp">
+
+                <EditText
+                    android:id="@+id/registerActivityEmergencyName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Emergency contact name"
+                    android:inputType="text"
+                    android:textColor="#fff" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/registerActivityEmergencyPhoneNumberLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/registerActivityEmergencyNameLayout"
+                android:layout_margin="15dp">
+
+                <EditText
+                    android:id="@+id/registerActivityEmergencyPhoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Emergency contact phone number"
+                    android:inputType="phone"
+                    android:textColor="#fff" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+</android.support.v7.widget.CardView>
