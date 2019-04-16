@@ -151,7 +151,7 @@ public class LoginActivity extends AppCompatActivity {
      * Redirect to the main screen without option to go back.
      */
     private void redirectToMainView() {
-        Intent intent = new Intent(mContext, AdminActivity.class);
+        Intent intent = new Intent(mContext, MainActivity.class);
         startActivity(intent);
         finish();
     }
