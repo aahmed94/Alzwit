@@ -68,15 +68,17 @@ public class FirebaseMethods {
     public User getCurrentUserData() {
         userID = mAuth.getCurrentUser().getUid();
 
-        myRef.child("users").addValueEventListener(new ValueEventListener() {
+
+        myRef.child("users").equalTo(userID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot data : dataSnapshot.getChildren()) {
                     String key = dataSnapshot.getKey();
-                    if(userID.equals(key)){
+                   // if(userID.equals(key)){
                         userData = data.getValue(User.class);
 
-                    }
+
+                    //}
                 }
             }
 
