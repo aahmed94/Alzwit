@@ -82,4 +82,17 @@ public class User {
         String middleName = this.middleName.isEmpty()? " " : " "+this.middleName+" ";
         return this.firstName+ middleName +this.lastName;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "firstName='" + firstName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address='" + address + '\'' +
+                ", birthday=" + birthday +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", emergencyUser=" + emergencyUser +
+                '}';
+    }
 }

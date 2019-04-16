@@ -5,6 +5,9 @@ public class EmergencyUser {
     private String email;
     private String phoneNumber;
 
+    public EmergencyUser() {
+
+    }
     public EmergencyUser(String fullName, String email, String phoneNumber) {
         this.fullName = fullName;
         this.email = email;
@@ -33,5 +36,14 @@ public class EmergencyUser {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "EmergencyUser{" +
+                "fullName='" + fullName + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
     }
 }
