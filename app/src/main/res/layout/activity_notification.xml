@@ -27,11 +27,11 @@
             />
 
         <TextView
-            android:id="@+id/motivationDescription"
+            android:id="@+id/notificationDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_below="@+id/motivationTitle"
+            android:layout_below="@+id/notificationTitle"
             android:gravity="center_horizontal"
             android:paddingBottom="8dp"
             android:paddingTop="8dp"

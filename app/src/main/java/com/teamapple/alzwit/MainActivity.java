@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -13,15 +14,25 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.teamapple.menu.Menu;
 import com.teamapple.models.Notification;
 
 import java.net.PasswordAuthentication;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,7 +41,11 @@ public class MainActivity extends AppCompatActivity {
     private static DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Context context = this;
+    private DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
+    private String userID = FirebaseAuth.getInstance().getUid();
+    private ArrayList<Notification> notificationList = new ArrayList<>();
     private Button passportButton;
+    private StaggeredGridLayoutManager staggeredGridLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +53,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setUpToolbar();
         viewPassportOnClick();
+        populateList();
+       // Notification not = new Notification("Label", "Description", new Date(), new Date(), new Date());
+      //  createNotificationChannel();
+       // sendPushNotification(not);
 
-        Notification not = new Notification("Label", "Description", new Date(), new Date(), new Date());
-        createNotificationChannel();
-        sendPushNotification(not);
     }
 
     private void setUpToolbar() {
@@ -82,6 +98,34 @@ public class MainActivity extends AppCompatActivity {
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
+    }
+
+    private void populateList() {
+        mRef.child("notifications").child(userID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for(DataSnapshot ds: dataSnapshot.getChildren()) {
+                        notificationList.add(ds.getValue(Notification.class));
+                        Log.d("THIS IS ME", dataSnapshot.toString());
+                    }
+                    setupRecyclerView();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        Log.d("This is the list", notificationList.toString());
+    }
+
+    private void setupRecyclerView() {
+            RecyclerView recyclerView = findViewById(R.id.recycler_view);
+            recyclerView.setHasFixedSize(true);
+            staggeredGridLayoutManager = new StaggeredGridLayoutManager(1,1);
+            recyclerView.setLayoutManager(staggeredGridLayoutManager);
+            CardViewAdapter cardViewAdapter = new CardViewAdapter(notificationList, context);
+            recyclerView.setAdapter(cardViewAdapter);
     }
 
     public void sendPushNotification(Notification card){
