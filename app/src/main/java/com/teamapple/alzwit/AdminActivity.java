@@ -5,8 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
 import com.teamapple.firebase.FirebaseMethods;
 import com.teamapple.models.Notification;
+import com.teamapple.validators.NotificationGuard;
+
+import java.util.ArrayList;
 import java.util.Date;
 
 public class AdminActivity extends AppCompatActivity {
@@ -15,8 +21,12 @@ public class AdminActivity extends AppCompatActivity {
     private String label, description, date, startTime, endTime;
     private Date notificationDate;
     private Button btnSaveNotification;
+    private ProgressBar mProgressBar;
 
     private FirebaseMethods firebaseMethods = new FirebaseMethods(AdminActivity.this);
+
+    private NotificationGuard notificationGuard = new NotificationGuard();
+    private ArrayList<String> errorMessages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,23 +34,16 @@ public class AdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_notification);
 
         getControls();
-        onClickRegisterButton();
+        hideProgressBar();
+        onClickSaveButton();
     }
 
-    private void onClickRegisterButton() {
+    private void onClickSaveButton() {
         btnSaveNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getUserInput();
-
-                if (true) {
                     saveNotification();
-                    //resetFields();
-                } else {
-//                    String errorsToPrint = prepareErrorsForView();
-//                    Toast.makeText(RegisterActivity.this, errorsToPrint,
-//                            Toast.LENGTH_LONG).show();
-                }
             }
         });
     }
@@ -51,7 +54,31 @@ public class AdminActivity extends AppCompatActivity {
         Date notEndTime = getTime(endTime);
 
         Notification newNot = new Notification(label, description, notificationDate, notStartTime, notEndTime);
-        firebaseMethods.addNotification(newNot);
+        if(userInputIsValid(newNot)) {
+            showProgressBar();
+            firebaseMethods.addNotification(newNot);
+        }
+        else{
+            String errorsToPrint = prepareErrorsForView();
+                   Toast.makeText(AdminActivity.this, errorsToPrint,
+                        Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /**
+     * Prepare the list of errors to print
+     *
+     * @return The list of errors as single string
+     */
+    private String prepareErrorsForView() {
+        StringBuilder errors = new StringBuilder();
+
+        for (String error : errorMessages) {
+            errors.append(error);
+            errors.append("\n\r");
+        }
+
+        return errors.toString().trim();
     }
 
     private void getUserInput() {
@@ -87,6 +114,27 @@ public class AdminActivity extends AppCompatActivity {
         }
 
         return null;
+    }
+
+    private boolean userInputIsValid(Notification not)
+    {
+        errorMessages = notificationGuard.validateNotification(not);
+
+        return errorMessages.size()==0;
+    }
+
+    /**
+     * Hides the progress bar.
+     */
+    private void hideProgressBar() {
+        mProgressBar.setVisibility(View.INVISIBLE);
+    }
+
+    /**
+     * Shows the progress bar.
+     */
+    private void showProgressBar() {
+        mProgressBar.setVisibility(View.VISIBLE);
     }
 
     private void getControls() {
