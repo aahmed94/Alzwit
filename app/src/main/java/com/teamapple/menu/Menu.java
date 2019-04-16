@@ -51,8 +51,10 @@ public class Menu {
         navigationView.setNavigationItemSelectedListener(new OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                // set item as selected to persist highlight
+
+                // set item as selected to persist highlighted
                 item.setChecked(true);
+
                 // close drawer when item is tapped
                 drawerLayout.closeDrawers();
 
