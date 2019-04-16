@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/alzwit_background">
 
+
     <TextView
         android:id="@+id/textViewLayout"
         android:layout_width="match_parent"
@@ -11,6 +12,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="15dp"
         android:gravity="center"
+        android:layout_below="@id/addNewNotificationToolbarLayout"
         android:text="Register A New Account"
         android:textColor="#fff"
         android:textSize="30dp" />

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/addNewNotificationToolbarLayout">
+        <include layout="@layout/toolbar"></include>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textViewLayout"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@id/addNewNotificationToolbarLayout"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="52dp"
+        android:gravity="center"
+        android:text="Add notification"
+        android:textColor="#3AB772"
+        android:textSize="30dp" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewLayout"
+        >
+
+        <RelativeLayout
+            android:id="@+id/registerActivityUsernameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp">
+
+            <EditText
+                android:id="@+id/addNewNotificationLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Label"
+                android:inputType="text"
+                android:textColor="#fff" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/registerActivityPasswordInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/registerActivityUsernameLayout"
+            android:layout_margin="15dp">
+
+            <EditText
+                android:id="@+id/addNewNotificationDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Description"
+                android:inputType="text"
+                android:textColor="#fff" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/registerActivityInputPasswordConfirmLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/registerActivityPasswordInputLayout"
+            android:layout_margin="15dp">
+
+            <EditText
+                android:id="@+id/addNewNotificationDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Date"
+                android:inputType="text"
+                android:textColor="#fff" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/registerActivityFirstNameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/registerActivityInputPasswordConfirmLayout"
+            android:layout_margin="15dp">
+
+            <EditText
+                android:id="@+id/addNewNotificationStartTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Start time"
+                android:inputType="text"
+                android:textColor="#fff" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/registerActivityMiddleNameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/registerActivityFirstNameLayout"
+            android:layout_margin="15dp">
+
+            <EditText
+                android:id="@+id/addNewNotificationEndTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="End time"
+                android:inputType="text"
+                android:textColor="#fff" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/registerActivityProgressBar"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/addNewNotificationButton"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="61dp"
+        android:background="@layout/login_button_layout"
+        android:text="Add notification"
+        android:textColor="#fff" />
+
+</RelativeLayout>

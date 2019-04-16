@@ -10,21 +10,7 @@
     card_view:cardBackgroundColor="#919191"
     android:layout_marginBottom="16dp">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/activityPassportToolbarLayout"
-        android:layout_above="@+id/passportScrollView">
-        <include layout="@layout/toolbar"></include>
-    </RelativeLayout>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:id="@+id/passportScrollView"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/activityPassportToolbarLayout"
-        >
         <RelativeLayout
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
@@ -34,12 +20,12 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp">
 
-                <EditText
-                    android:id="@+id/registerActivityEmail"
+                <TextView
+                    android:id="@+id/passportActivityName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Emergency Contact E-mail"
-                    android:inputType="textEmailAddress"
+                    android:textSize="20dp"
+                    android:text="Fullname"
                     android:textColor="#fff" />
 
             </RelativeLayout>
@@ -203,5 +189,5 @@
                     android:textColor="#fff" />
             </RelativeLayout>
         </RelativeLayout>
-    </ScrollView>
+
 </android.support.v7.widget.CardView>
