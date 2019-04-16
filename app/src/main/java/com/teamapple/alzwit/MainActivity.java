@@ -18,10 +18,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.teamapple.firebase.FirebaseMethods;
 import com.teamapple.menu.Menu;
 import com.teamapple.models.Notification;
 
 import java.net.PasswordAuthentication;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     private Context context = this;
     private Button passportButton;
 
+    private FirebaseMethods firebaseMethods = new FirebaseMethods(MainActivity.this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +43,9 @@ public class MainActivity extends AppCompatActivity {
         setUpToolbar();
         viewPassportOnClick();
 
-        Notification not = new Notification("Label", "Description", new Date(), new Date(), new Date());
+        //Notification not = new Notification("Label", "Description", new Date(), new Date(), new Date());
         createNotificationChannel();
-        sendPushNotification(not);
+        firebaseMethods.getUserNotifications();
     }
 
     private void setUpToolbar() {
@@ -58,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
             Menu menu= new Menu(this);
             menu.setUpMenu(mDrawerLayout, context);
         }
+
     private void viewPassportOnClick() {
         passportButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,4 +112,8 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+//    private ArrayList<Notification> fetchNotifications(){
+//
+//    }
 }
