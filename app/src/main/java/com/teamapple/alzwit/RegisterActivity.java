@@ -84,7 +84,6 @@ public class RegisterActivity extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
                 if (user != null) {
-                    // User is signed in
                 } else {
                     // User is signed out
                 }
