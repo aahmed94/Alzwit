@@ -48,7 +48,7 @@ public class PassportActivity extends AppCompatActivity {
 
        user = getCurrentUserData();
 
-        onClickEmContactButton();
+       // onClickRegisterButton();
        // setCurrentUserData();
     }
 
@@ -66,14 +66,14 @@ public class PassportActivity extends AppCompatActivity {
         firebaseMethods = new FirebaseMethods(mContext);
     }
 
-    private void onClickEmContactButton() {
-        btnEmContact.setOnClickListener(new View.OnClickListener() {
+    private void onClickRegisterButton() {
+        btnEmContact.setOnClickListener(new View.OnClickListener()  {
+            Uri number = Uri.parse( "tel:" + user.getEmergencyUser().getPhoneNumber());
+
+
             @Override
             public void onClick(View v) {
-                String num = "tel:" + user.getEmergencyUser().getPhoneNumber();
-                Uri number = Uri.parse( num);
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(number);
+                Intent intent = new Intent(Intent.ACTION_DIAL,number);
                 startActivity(intent);
             }
         });
@@ -86,7 +86,6 @@ public class PassportActivity extends AppCompatActivity {
         labelPhone= "My phone number is: ",
         labelBirtday = "My birtday is: ",
         labelButton = "Call ",
-        //age = getAge(user.getBirtday()),
         emContactName = user.getEmergencyUser().getFullName();
 
         Date date = user.getBirtday();
@@ -95,34 +94,10 @@ public class PassportActivity extends AppCompatActivity {
             mFullName.setText(labelFullName + user.getFullName());
             mPhone.setText(labelPhone + user.getPhoneNumber());
             mAddress.setText(labelAdress + user.getAddress());
-           //mBirtday.setText(labelBirtday + birthday + "("+age+")" );
+           mBirtday.setText(labelBirtday + birthday);
             btnEmContact.setText(labelButton + emContactName);
-
     }
 
-    private String getAge(Date birtday) {
-
-        int day = Integer.parseInt(DateFormat.format("dd",birtday).toString());
-        int month = Integer.parseInt(DateFormat.format("MM",birtday).toString());
-        int year = Integer.parseInt(DateFormat.format("yyyy",birtday).toString());
-
-        Calendar userBirtday = Calendar.getInstance();
-        Calendar today = Calendar.getInstance();
-
-        userBirtday.set(year, month, day);
-
-        //int age = today-userBirtday;
-        //int age = today.get(Calendar.YEAR) - userBirtday.get(Calendar.YEAR);
-
-        if (today.get(Calendar.DAY_OF_YEAR) < userBirtday.get(Calendar.DAY_OF_YEAR)){
-            //age--;
-        }
-
-        //Integer ageInt = new Integer(age);
-        //String ageS = ageInt.toString();
-
-        return "dff";
-    }
     public User getCurrentUserData() {
         userID = FirebaseAuth.getInstance().getUid();
         Log.d("USER ID IS", userID);
