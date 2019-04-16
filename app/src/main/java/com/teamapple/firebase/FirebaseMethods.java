@@ -15,6 +15,8 @@ import com.teamapple.models.Notification;
 import com.teamapple.models.User;
 
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -56,6 +58,25 @@ public class FirebaseMethods {
         myRef.setValue(user);
 
         mAuth.signOut();
+    }
+
+    public ArrayList<Notification> getUserNotifications(){
+        userID = mAuth.getCurrentUser().getUid();
+
+        myRef.child("notifications").child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Notification notification = dataSnapshot.getValue(Notification.class);
+                Log.i("Notification: ", notification.getLabel());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        return null;
     }
 
     public void addNotification(Notification newNot) {
