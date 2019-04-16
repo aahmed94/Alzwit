@@ -144,5 +144,6 @@ public class AdminActivity extends AppCompatActivity {
         mStartTime = findViewById(R.id.addNewNotificationStartTime);
         mEndTime = findViewById(R.id.addNewNotificationEndTime);
         btnSaveNotification = findViewById(R.id.addNewNotificationButton);
+        mProgressBar = findViewById(R.id.addNewNotificationProgressBar);
     }
 }
