@@ -67,7 +67,7 @@ public class PassportActivity extends AppCompatActivity {
     }
 
     private void onClickRegisterButton() {
-        btnEmContact.setOnClickListener(new View.OnClickListener() {
+        btnEmContact.setOnClickListener(new View.OnClickListener()  {
             Uri number = Uri.parse( "tel:" + user.getEmergencyUser().getPhoneNumber());
 
 
