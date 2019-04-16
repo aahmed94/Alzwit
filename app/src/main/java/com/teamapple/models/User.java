@@ -11,6 +11,7 @@ public class User {
     private String phoneNumber;
     private EmergencyUser emergencyUser;
 
+    public User(){};
     public User(String firstName, String middleName, String lastName, String address, Date birthday, String phoneNumber, EmergencyUser emergencyUser) {
         this.firstName = firstName;
         this.middleName = middleName;
