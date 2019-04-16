@@ -3,16 +3,19 @@ package com.teamapple.models;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Date;
 
 public class Notification {
     private String label;
     private String description;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    private Date date;
+    private Date startTime;
+    private Date endTime;
 
-    public Notification(String label, String description, LocalDateTime startTime, LocalDateTime endTime) {
+    public Notification(String label, String description, Date date, Date startTime, Date endTime) {
         this.label = label;
         this.description = description;
+        this.date=date;
         this.startTime = startTime;
         this.endTime = endTime;
     }
@@ -33,19 +36,27 @@ public class Notification {
         this.description = description;
     }
 
-    public LocalDateTime getStartTime() {
+    public Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalDateTime startTime) {
+    public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
-    public LocalDateTime getEndTime() {
+    public Date getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(LocalDateTime endTime) {
+    public void setEndTime(Date endTime) {
         this.endTime = endTime;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

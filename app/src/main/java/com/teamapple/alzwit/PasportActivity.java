@@ -10,10 +10,10 @@ public class PasportActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_passport);
+        //setContentView(R.layout.activity_passport);
     }
 
     private User getCurrentUserData(){
-
+        return null;
     }
 }

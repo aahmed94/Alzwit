@@ -1,12 +1,12 @@
 package com.teamapple.firebase;
 
 import android.content.Context;
-import android.support.constraint.solver.widgets.Snapshot;
+import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.teamapple.models.Notification;
 import com.teamapple.models.User;
 
 import java.util.HashMap;
@@ -15,7 +15,6 @@ import java.util.Map;
 public class FirebaseMethods {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
     private String userID;
 
@@ -24,8 +23,7 @@ public class FirebaseMethods {
     public FirebaseMethods(Context context) {
         mAuth = FirebaseAuth.getInstance();
         mContext = context;
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        myRef = mFirebaseDatabase.getReference();
+        myRef = FirebaseDatabase.getInstance().getReference();
 
         if (mAuth.getCurrentUser() != null) {
             userID = mAuth.getCurrentUser().getUid();
@@ -44,16 +42,23 @@ public class FirebaseMethods {
         userID = mAuth.getCurrentUser().getUid();
 
         myRef = myRef.child("users/");
-        Map<String, User> users = new HashMap<>();
-        users.put(userID, user);
-        myRef.setValue(users);
+        Map<String, User> dataToAdd = new HashMap<>();
+        dataToAdd.put(userID, user);
+        myRef.setValue(dataToAdd);
+        dataToAdd.clear();
     }
 
-    public User getCurrentUserData() {
+//    public User getCurrentUserData() {
+//        userID = mAuth.getCurrentUser().getUid();
+//        myRef = myRef.getDatabase().getReference("users/"+userID).addListenerForSingleValueEvent(){
+//
+//        };
+//    }
+
+    public void addNotification(Notification newNot) {
         userID = mAuth.getCurrentUser().getUid();
-
-        myRef = myRef.getDatabase().getReference("users/"+userID).addListenerForSingleValueEvent(){
-
-        };
+        myRef = FirebaseDatabase.getInstance().getReference("notifications/"+userID);
+        myRef.setValue(newNot);
+        Log.d("Add not", "works");
     }
 }
