@@ -11,7 +11,10 @@ public class User {
     private String phoneNumber;
     private EmergencyUser emergencyUser;
 
-    public User(){};
+    public User() {
+
+    }
+
     public User(String firstName, String middleName, String lastName, String address, Date birthday, String phoneNumber, EmergencyUser emergencyUser) {
         this.firstName = firstName;
         this.middleName = middleName;
@@ -54,12 +57,12 @@ public class User {
         this.address = address;
     }
 
-    public Date getBirtday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirtday(Date birtday) {
-        this.birthday = birtday;
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
     public String getPhoneNumber() {
@@ -79,8 +82,8 @@ public class User {
     }
 
     public String getFullName(){
-        String middleName = this.middleName.isEmpty()? " " : " "+this.middleName+" ";
-        return this.firstName+ middleName +this.lastName;
+        String middleName = this.middleName.isEmpty()? " " : " "+ this.middleName+" ";
+        return this.firstName + middleName + this.lastName;
     }
 
     @Override

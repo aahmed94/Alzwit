@@ -10,7 +10,7 @@ public class RegisterGuard {
     public RegisterGuard() {
     }
 
-    public ArrayList<String> validateUser(String password, String confirmPassword, String firstName, String lastName, String address, Date birtday, String phoneNumber, EmergencyUser emergencyUser){
+    public ArrayList<String> validateUser(String password, String confirmPassword, String firstName, String lastName, String address, Date birthday, String phoneNumber, EmergencyUser emergencyUser) {
         ArrayList<String> errorMessages = new ArrayList<>();
 
         if(password.isEmpty())
@@ -25,8 +25,8 @@ public class RegisterGuard {
             errorMessages.add("Please enter last name.");
         if(address.isEmpty())
             errorMessages.add("Please enter address.");
-        Log.d("Birthday", birtday.toString());
-        if(birtday.before(new Date()))
+        Log.d("Birthday", birthday.toString());
+        if(birthday.before(new Date()))
             errorMessages.add("Please enter valid birthday.");
         if(phoneNumber.isEmpty())
             errorMessages.add("Please enter phone number.");

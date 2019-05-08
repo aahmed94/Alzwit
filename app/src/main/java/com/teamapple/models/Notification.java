@@ -10,8 +10,8 @@ public class Notification {
     private Date endTime;
 
     public Notification() {
-
     }
+
     public Notification(String label, String description, Date date, Date startTime, Date endTime) {
         this.label = label;
         this.description = description;

@@ -132,8 +132,7 @@ public class RegisterActivity extends AppCompatActivity {
             errors.append(error);
             errors.append("\n\r");
         }
-
-        return errors.toString().trim();
+            return errors.toString().trim();
     }
 
     /**
@@ -148,7 +147,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     /**
      * Get Date object from string in format dd/MM/yyyy
-     * @param birthday as stirng
+     * @param birthday as string
      * @return Date of string
      */
     private Date getDate(String birthday) {
@@ -156,7 +155,6 @@ public class RegisterActivity extends AppCompatActivity {
         if (dateParts.length == 3) {
             return new Date(Integer.parseInt(dateParts[2]), Integer.parseInt(dateParts[1]), Integer.parseInt(dateParts[0]));
         }
-
         return new Date();
     }
 
@@ -181,7 +179,7 @@ public class RegisterActivity extends AppCompatActivity {
      * We prepare the date picker to be ready to pop up when birtday control is clicked
      */
     private void prepareDatePicker() {
-        mBirthday = (EditText) findViewById(R.id.registerActivityDate);
+        mBirthday = findViewById(R.id.registerActivityDate);
         mBirthday.setInputType(InputType.TYPE_NULL);
 
         mBirthday.setOnClickListener(new View.OnClickListener() {

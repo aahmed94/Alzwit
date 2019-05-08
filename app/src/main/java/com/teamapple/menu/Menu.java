@@ -18,7 +18,6 @@ import com.teamapple.alzwit.R;
 import static android.support.design.widget.NavigationView.OnNavigationItemSelectedListener;
 
 public class Menu {
-
     private Button signOutMenuButton;
     private Activity activity;
     private Context context;
@@ -27,7 +26,7 @@ public class Menu {
         this.activity = activity;
     }
 
-    public void setUpMenu(final DrawerLayout drawerLayout, final Context context){
+    public void setUpMenu(final DrawerLayout drawerLayout, final Context context) {
 
         this.context = context;
 
@@ -37,7 +36,6 @@ public class Menu {
         signOutMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(context, LoginActivity.class);
 
@@ -72,10 +70,8 @@ public class Menu {
                         context.startActivity(intent2);
                         break;
                 }
-
                 return true;
             }
         });
     }
-
 }

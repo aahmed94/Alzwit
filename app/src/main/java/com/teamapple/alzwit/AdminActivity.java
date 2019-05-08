@@ -109,7 +109,6 @@ public class AdminActivity extends AppCompatActivity {
 
             return new Date(year, month, day);
         }
-
         return null;
     }
 

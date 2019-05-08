@@ -10,7 +10,7 @@
         android:supportsRtl="true"
 
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity"
+        <activity android:name=".LoginChecker"
             android:windowSoftInputMode="adjustNothing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,11 +19,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity"></activity>
+        <activity android:name=".LoginActivity"></activity>
         <activity android:name=".PassportActivity"></activity>
         <activity android:name=".RegisterActivity"
             android:windowSoftInputMode="adjustNothing"></activity>
         <activity android:name=".AdminActivity"></activity>
-        <activity android:name=".PasportActivity"></activity>
     </application>
 
 </manifest>
